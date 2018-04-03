@@ -113,6 +113,9 @@
               <Properties>
                 <Property name="label" type="java.lang.String" value="button1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Button" name="button2">
               <Properties>
@@ -131,7 +134,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto&#xa;timer = new javax.swing.Timer(1000, new ActionListener() {&#xa;                  public void actionPerformed(ActionEvent e) {&#xa;                      Calendar now = Calendar.getInstance();&#xa;                      int h = now.get(Calendar.HOUR_OF_DAY);&#xa;                      int m = now.get(Calendar.MINUTE);&#xa;                      int s = now.get(Calendar.SECOND);&#xa;                      jLabel1.setText(&quot;&quot; + h + &quot;:&quot; + m + &quot;:&quot; + s);&#xa;                  }&#xa;              });&#xa;timer.start();"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto&#xa;timer = new javax.swing.Timer(1000, new ActionListener() {&#xa;                  public void actionPerformed(ActionEvent e) {&#xa;                      Calendar now = Calendar.getInstance();&#xa;                      int h = now.get(Calendar.HOUR_OF_DAY);&#xa;                      int m = now.get(Calendar.MINUTE);&#xa;                      int s = now.get(Calendar.SECOND);&#xa;                      jLabel1.setText(&quot;&quot; + h + &quot;:&quot; + m);&#xa;                  }&#xa;              });&#xa;timer.start();"/>
               </AuxValues>
             </Component>
           </SubComponents>

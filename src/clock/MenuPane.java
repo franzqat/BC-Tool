@@ -16,15 +16,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MenuPane extends javax.swing.JFrame {
     private javax.swing.Timer timer;
     
-    
-    
-    public MenuPane() {
+    public MenuPane() { 
         initComponents();
-       
+      
     }
 
     /**
@@ -52,6 +52,11 @@ public class MenuPane extends javax.swing.JFrame {
         desc_currEstClock.setText("EST Time:");
 
         button1.setLabel("button1");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         button2.setLabel("button2");
 
@@ -100,7 +105,7 @@ public class MenuPane extends javax.swing.JFrame {
                 int h = now.get(Calendar.HOUR_OF_DAY);
                 int m = now.get(Calendar.MINUTE);
                 int s = now.get(Calendar.SECOND);
-                jLabel1.setText("" + h + ":" + m + ":" + s);
+                jLabel1.setText("" + h + ":" + m);
             }
         });
         timer.start();
@@ -139,6 +144,31 @@ public class MenuPane extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    public static void sendKeys(String keys) throws AWTException {
+        Robot robot = new Robot();
+        for (char c : keys.toCharArray()) {
+        int keyCode = KeyEvent.getExtendedKeyCodeForChar(c);
+        if (KeyEvent.CHAR_UNDEFINED == keyCode) {
+            throw new RuntimeException(
+                "Key code not found for character '" + c + "'");
+        }
+        robot.keyPress(keyCode);
+        robot.delay(100);
+        robot.keyRelease(keyCode);
+        robot.delay(100);
+    }
+}
+    
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            sendKeys("testoste");
+        } catch (AWTException ex) {
+            Logger.getLogger(MenuPane.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,4 +217,10 @@ public class MenuPane extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JPanel timingPanel;
     // End of variables declaration//GEN-END:variables
+
+
+
+
+
+
 }
