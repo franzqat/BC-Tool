@@ -13,6 +13,7 @@
 package clock;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
@@ -28,14 +29,29 @@ import java.util.logging.Logger;
  * @author Francesco
  */
 public class Configuration {
-    private final String CONFIG_FILE = "config.properties";
-    private final Properties p = new Properties();
+    private final String CONFIG_FILE;
+    private final Properties p;
+
+    public Configuration() {
+        this.p = new Properties();
+        this.CONFIG_FILE = "config.properties";
+       // saveConfig();
+    }
     
+    private void configExists() throws IOException {
+        File yourFile = new File(CONFIG_FILE);
+        if (!yourFile.exists()) {
+           saveConfig();
+        }
+        //FileOutputStream oFile = new FileOutputStream(yourFile, false);
+    }
     
-  public Properties loadConfig() {
-  
-        //String path = "./" + CONFIG_FILE;
-        //String path = "F:\\Programmazione\\Clock\\dist\\";           
+  public Properties loadConfig() {        
+        try {
+            configExists();
+        } catch (IOException ex) {
+            Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FileInputStream fis = null;
         try {
             fis = new FileInputStream(CONFIG_FILE);
@@ -53,28 +69,53 @@ public class Configuration {
   }
 
  
-    public java.lang.String get(String key) {
-        String toret = "";
-        toret = p.getProperty(key);
-        return toret;
+    public String get(String key) {
+        return p.getProperty(key);
+
     }
     
     
-     public static void saveConfig(Properties prop, String user) {
+     public void saveConfig(String user) {
         OutputStream output = null;
         
         try {
             
             output = new FileOutputStream("config.properties");
-           /*
+            
+            p.setProperty("username", user);
+                
+            /*
             // set the properties value
-            prop.setProperty("database", "localhost");
-            prop.setProperty("dbuser", "mkyong");
-            prop.setProperty("dbpassword", "password123");
+            p.setProperty("database", "localhost");
+            p.setProperty("dbuser", "mkyong");
+            p.setProperty("dbpassword", "password123");
             */
            
             // save properties to project root folder
-            prop.store(output, null);
+            p.store(output, null);
+            
+        } catch (IOException io) {
+            System.out.println("File not found");
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                }
+            }
+            
+        }
+    }
+     public void saveConfig() {
+        OutputStream output = null;
+        
+        try {
+            
+            output = new FileOutputStream("config.properties");
+            
+            p.setProperty("username", "default");
+            // save properties to project root folder
+            p.store(output, null);
             
         } catch (IOException io) {
         } finally {
