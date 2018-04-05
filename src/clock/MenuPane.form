@@ -9,6 +9,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -48,6 +51,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane3">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -64,20 +72,23 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="button1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="desc_currEstClock" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                              <Component id="jLabel1" pref="201" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="button1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="alt_tab" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="button3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="desc_currEstClock" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="201" max="-2" attributes="0"/>
-                      <EmptySpace pref="125" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -103,10 +114,17 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="desc_currEstClock">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="36" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="EST Time:"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursore predefinito"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="" noResource="true"/>
               </Properties>
             </Component>
             <Component class="java.awt.Button" name="button1">
@@ -137,7 +155,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto&#xa;timer = new javax.swing.Timer(1000, new ActionListener() {&#xa;                  public void actionPerformed(ActionEvent e) {&#xa;                      Calendar now = Calendar.getInstance();&#xa;                      int h = now.get(Calendar.HOUR_OF_DAY);&#xa;                      int m = now.get(Calendar.MINUTE);&#xa;                      int s = now.get(Calendar.SECOND);&#xa;                      jLabel1.setText(&quot;&quot; + h + &quot;:&quot; + m);&#xa;                  }&#xa;              });&#xa;timer.start();"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto&#xa;timer = new javax.swing.Timer(1000, new ActionListener() {&#xa;                  public void actionPerformed(ActionEvent e) {&#xa;                      Calendar now = Calendar.getInstance();&#xa;                      int h = now.get(Calendar.HOUR_OF_DAY);&#xa;                      int m = now.get(Calendar.MINUTE);&#xa;                      int s = now.get(Calendar.SECOND);&#xa;                      jLabel1.setText(&quot;&quot; + h + &quot;:&quot; + m + &quot;:&quot; + s);&#xa;                  }&#xa;              });&#xa;timer.start();"/>
               </AuxValues>
             </Component>
           </SubComponents>

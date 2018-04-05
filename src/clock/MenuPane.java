@@ -21,8 +21,14 @@ import java.util.logging.Logger;
 
 public class MenuPane extends javax.swing.JFrame {
     private javax.swing.Timer timer;
+    private Configuration config;
     
     public MenuPane() { 
+        try {
+            config = new Configuration();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuPane.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
       
     }
@@ -47,9 +53,15 @@ public class MenuPane extends javax.swing.JFrame {
         timingPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
 
+        jTabbedPane3.setBackground(new java.awt.Color(153, 153, 153));
+
+        desc_currEstClock.setBackground(new java.awt.Color(204, 204, 204));
         desc_currEstClock.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         desc_currEstClock.setText("EST Time:");
+        desc_currEstClock.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        desc_currEstClock.setName(""); // NOI18N
 
         button1.setLabel("button1");
         button1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,19 +86,20 @@ public class MenuPane extends javax.swing.JFrame {
         clockPanelLayout.setHorizontalGroup(
             clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clockPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(clockPanelLayout.createSequentialGroup()
+                        .addComponent(desc_currEstClock)
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                    .addGroup(clockPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alt_tab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11))
-            .addGroup(clockPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(desc_currEstClock)
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
         );
         clockPanelLayout.setVerticalGroup(
             clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +123,7 @@ public class MenuPane extends javax.swing.JFrame {
                 int h = now.get(Calendar.HOUR_OF_DAY);
                 int m = now.get(Calendar.MINUTE);
                 int s = now.get(Calendar.SECOND);
-                jLabel1.setText("" + h + ":" + m);
+                jLabel1.setText("" + h + ":" + m + ":" + s);
             }
         });
         timer.start();
