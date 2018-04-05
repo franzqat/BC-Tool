@@ -67,7 +67,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="button1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="button2" min="-2" max="-2" attributes="0"/>
+                      <Component id="alt_tab" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="button3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
                       <EmptySpace pref="234" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="button1" min="-2" max="-2" attributes="0"/>
-                          <Component id="button2" min="-2" max="-2" attributes="0"/>
+                          <Component id="alt_tab" min="-2" max="-2" attributes="0"/>
                           <Component id="button3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -117,10 +117,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="java.awt.Button" name="button2">
+            <Component class="java.awt.Button" name="alt_tab">
               <Properties>
-                <Property name="label" type="java.lang.String" value="button2"/>
+                <Property name="label" type="java.lang.String" value="Alt+Tab"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alt_tabActionPerformed"/>
+              </Events>
             </Component>
             <Component class="java.awt.Button" name="button3">
               <Properties>
