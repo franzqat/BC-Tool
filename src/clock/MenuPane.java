@@ -14,6 +14,9 @@ package clock;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.temporal.Temporal;
 import javax.swing.*;
 import java.util.Calendar;
 import java.util.Properties;
@@ -57,32 +60,109 @@ public class MenuPane extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
+        timingPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        desc_currEstClock1 = new javax.swing.JLabel();
+        curr_Time1 = new javax.swing.JLabel();
         clockPanel = new javax.swing.JPanel();
-        desc_currEstClock = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         greatlyWorn = new java.awt.Button();
-        alt_tab = new java.awt.Button();
-        button3 = new java.awt.Button();
+        fairlyWorn = new java.awt.Button();
+        idocMaxWindow = new java.awt.Button();
+        jPanel3 = new javax.swing.JPanel();
+        desc_currEstClock = new javax.swing.JLabel();
         curr_Time = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         lab_username = new javax.swing.JLabel();
         SaveButton = new java.awt.Button();
-        timingPanel = new javax.swing.JPanel();
+        username = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
 
         jTabbedPane3.setBackground(new java.awt.Color(153, 153, 153));
 
-        desc_currEstClock.setBackground(new java.awt.Color(204, 204, 204));
-        desc_currEstClock.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        desc_currEstClock.setText("EST Time:");
-        desc_currEstClock.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        desc_currEstClock.setName(""); // NOI18N
+        timingPanel.setForeground(new java.awt.Color(60, 63, 65));
 
+        desc_currEstClock1.setBackground(new java.awt.Color(204, 204, 204));
+        desc_currEstClock1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        desc_currEstClock1.setText("EST Time:");
+        desc_currEstClock1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        desc_currEstClock1.setName(""); // NOI18N
+
+        curr_Time1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(desc_currEstClock1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(curr_Time1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(desc_currEstClock1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(curr_Time1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+
+        ///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto
+        timer = new javax.swing.Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Calendar now = Calendar.getInstance();
+                int h = now.get(Calendar.HOUR_OF_DAY);
+                int m = now.get(Calendar.MINUTE);
+                int s = now.get(Calendar.SECOND);
+                curr_Time1.setText("" + h + ":" + m + ":" + s);
+            }
+        });
+        timer.start();
+
+        javax.swing.GroupLayout timingPanelLayout = new javax.swing.GroupLayout(timingPanel);
+        timingPanel.setLayout(timingPanelLayout);
+        timingPanelLayout.setHorizontalGroup(
+            timingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(timingPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+        timingPanelLayout.setVerticalGroup(
+            timingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(timingPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(134, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Checking", timingPanel);
+
+        greatlyWorn.setBackground(new java.awt.Color(0, 102, 102));
         greatlyWorn.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         greatlyWorn.setLabel("GW");
         greatlyWorn.addActionListener(new java.awt.event.ActionListener() {
@@ -91,91 +171,76 @@ public class MenuPane extends javax.swing.JFrame {
             }
         });
 
-        alt_tab.setLabel("Alt+Tab");
-        alt_tab.addActionListener(new java.awt.event.ActionListener() {
+        fairlyWorn.setBackground(new java.awt.Color(51, 102, 255));
+        fairlyWorn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        fairlyWorn.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        fairlyWorn.setLabel("FW");
+        fairlyWorn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alt_tabActionPerformed(evt);
+                fairlyWornActionPerformed(evt);
             }
         });
 
-        button3.setLabel("button3");
+        idocMaxWindow.setBackground(new java.awt.Color(255, 51, 102));
+        idocMaxWindow.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        idocMaxWindow.setLabel("IDOC");
+        idocMaxWindow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idocMaxWindowActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(fairlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(greatlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(idocMaxWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(greatlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idocMaxWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fairlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        desc_currEstClock.setBackground(new java.awt.Color(204, 204, 204));
+        desc_currEstClock.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        desc_currEstClock.setText("EST Time:");
+        desc_currEstClock.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        desc_currEstClock.setName(""); // NOI18N
 
         curr_Time.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
-        /*
-        username.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        username.setText(null);
-        */
-        username.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameActionPerformed(evt);
-            }
-        });
-
-        lab_username.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lab_username.setText("Current User");
-
-        SaveButton.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        SaveButton.setLabel("Save");
-        SaveButton.setName("Save"); // NOI18N
-        SaveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout clockPanelLayout = new javax.swing.GroupLayout(clockPanel);
-        clockPanel.setLayout(clockPanelLayout);
-        clockPanelLayout.setHorizontalGroup(
-            clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clockPanelLayout.createSequentialGroup()
-                .addContainerGap(602, Short.MAX_VALUE)
-                .addComponent(lab_username)
-                .addContainerGap())
-            .addGroup(clockPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clockPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11))
-                    .addGroup(clockPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(greatlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(alt_tab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(530, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clockPanelLayout.createSequentialGroup()
-                        .addComponent(desc_currEstClock)
-                        .addGap(3, 3, 3)
-                        .addComponent(curr_Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(desc_currEstClock)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(curr_Time, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        clockPanelLayout.setVerticalGroup(
-            clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(clockPanelLayout.createSequentialGroup()
-                .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clockPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(desc_currEstClock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(curr_Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE))
-                    .addGroup(clockPanelLayout.createSequentialGroup()
-                        .addComponent(lab_username)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(greatlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alt_tab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(desc_currEstClock, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(curr_Time, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         ///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto
@@ -189,6 +254,78 @@ public class MenuPane extends javax.swing.JFrame {
             }
         });
         timer.start();
+
+        javax.swing.GroupLayout clockPanelLayout = new javax.swing.GroupLayout(clockPanel);
+        clockPanel.setLayout(clockPanelLayout);
+        clockPanelLayout.setHorizontalGroup(
+            clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clockPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+        clockPanelLayout.setVerticalGroup(
+            clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clockPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Timing", clockPanel);
+
+        lab_username.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lab_username.setText("Current User");
+
+        SaveButton.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        SaveButton.setLabel("Save");
+        SaveButton.setName("Save"); // NOI18N
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
+
+        /*
+        username.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        username.setText(null);
+        */
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lab_username))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lab_username)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+
         // TODO add your handling code here:
         /*
         *Load da file (l'utente si chiama default)
@@ -196,20 +333,24 @@ public class MenuPane extends javax.swing.JFrame {
         **/
         username.setText(getUsername());
 
-        jTabbedPane3.addTab("tab1", clockPanel);
-
-        javax.swing.GroupLayout timingPanelLayout = new javax.swing.GroupLayout(timingPanel);
-        timingPanel.setLayout(timingPanelLayout);
-        timingPanelLayout.setHorizontalGroup(
-            timingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 699, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(418, Short.MAX_VALUE))
         );
-        timingPanelLayout.setVerticalGroup(
-            timingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("tab2", timingPanel);
+        jTabbedPane3.addTab("Settings", jPanel5);
 
         jMenu1.setText("Settings");
 
@@ -221,6 +362,14 @@ public class MenuPane extends javax.swing.JFrame {
         });
         jMenu1.add(jCheckBoxMenuItem1);
 
+        jMenuItem1.setText("Exit");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -229,31 +378,39 @@ public class MenuPane extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane3)
-                .addContainerGap())
+            .addComponent(jTabbedPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane3)
-                .addContainerGap())
+            .addComponent(jTabbedPane3)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    private int idocWindow(){
+    return getCalendar().get(Calendar.HOUR) + 6;
+}
+    
+    private String windowCalc(){
+      Calendar cal = getCalendar();
+      int hourWindowMax = idocWindow();
+      String window = currTime();    
+      window += "-" + hourWindowMax + getMinutes(cal) ;
+      return window;
+    }
+    
+    
     private String currDay(){
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = getCalendar();
      return "" + cal.get(Calendar.DAY_OF_MONTH) + "-";
     }
     
     private String currTime(){         
-        TimeZone tz1 = TimeZone.getTimeZone("US/Eastern");
-        Calendar est = Calendar.getInstance(tz1); // Calendar.getInstance();
+        Calendar est = getCalendar();
         int h = est.get(Calendar.HOUR);  //hour 12h - HOUR_OF_DAY 24h
-        int m = est.get(Calendar.MINUTE);
+       
         String fascia;
         int ampm = est.get(Calendar.AM_PM);
         if (ampm == 1) //pm
@@ -263,15 +420,29 @@ public class MenuPane extends javax.swing.JFrame {
             //am
             fascia = "am";
         }
-        if (m < 10) {
-            return "" + h + "0" + m + fascia;
-        } else {
-            return "" + h + m + fascia;
-        }
 
-      
+       return "" + h + getMinutes(est) + fascia;
     }
-    
+
+    private String getMinutes(Calendar est) {
+        int m = est.get(Calendar.MINUTE);
+        String minuti;
+        if (m < 10) {
+            minuti = "0" + m;
+        } else {
+            minuti = Integer.toString(m);
+        }
+        return minuti;
+    }
+
+    private Calendar getCalendar() {
+        TimeZone tz1 = TimeZone.getTimeZone("US/Eastern");
+        Calendar est = Calendar.getInstance(tz1); // Calendar.getInstance();
+        return est;
+    }
+     private String fairlyWornTime(String user){
+      return  "fw" + currDay() + currTime() +"."+ user;
+    }
     private String greatlyWornTime(String user){
       return  "gw" + currDay() + currTime() +"."+ user;
     }
@@ -301,6 +472,34 @@ public void alt_tab() throws AWTException {
     robot.keyRelease(KeyEvent.VK_ALT);
 }    
     
+ 
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+
+    private void idocMaxWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idocMaxWindowActionPerformed
+        // TODO add your handling code here:
+        try {
+            alt_tab();
+            String idoc = currTime() + " max";
+            writeKeyboard(idoc);
+        } catch (AWTException ex) {
+            Logger.getLogger(MenuPane.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_idocMaxWindowActionPerformed
+
+    private void fairlyWornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fairlyWornActionPerformed
+        try {
+            alt_tab();
+            String fw = fairlyWornTime(getUsername());
+            writeKeyboard(fw);
+        } catch (AWTException ex) {
+            Logger.getLogger(MenuPane.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_fairlyWornActionPerformed
+
     private void greatlyWornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greatlyWornActionPerformed
         try {
             // TODO add your handling code here:
@@ -312,13 +511,11 @@ public void alt_tab() throws AWTException {
         }
     }//GEN-LAST:event_greatlyWornActionPerformed
 
-    private void alt_tabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alt_tabActionPerformed
-        try {
-            alt_tab();
-        } catch (AWTException ex) {
-            Logger.getLogger(MenuPane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_alt_tabActionPerformed
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        // TODO add your handling code here:
+        //Save username from textbox
+        config.saveConfig(username.getText());
+    }//GEN-LAST:event_SaveButtonActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
@@ -326,22 +523,14 @@ public void alt_tab() throws AWTException {
         *Load da file (l'utente si chiama default)
         *Set text current user
         **/
-      // username.setText("default"));
-       
+        // username.setText("default"));
+
     }//GEN-LAST:event_usernameActionPerformed
 
-    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        //Save username from textbox
-        config.saveConfig(username.getText());
-    }//GEN-LAST:event_SaveButtonActionPerformed
-
- 
-    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+         System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,15 +571,24 @@ public void alt_tab() throws AWTException {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button SaveButton;
-    private java.awt.Button alt_tab;
-    private java.awt.Button button3;
     private javax.swing.JPanel clockPanel;
     private javax.swing.JLabel curr_Time;
+    private javax.swing.JLabel curr_Time1;
     private javax.swing.JLabel desc_currEstClock;
+    private javax.swing.JLabel desc_currEstClock1;
+    private java.awt.Button fairlyWorn;
     private java.awt.Button greatlyWorn;
+    private java.awt.Button idocMaxWindow;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel lab_username;
