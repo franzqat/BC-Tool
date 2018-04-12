@@ -66,12 +66,18 @@ public class MenuPane extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         desc_currEstClock1 = new javax.swing.JLabel();
         curr_Time1 = new javax.swing.JLabel();
-        clockPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        lastCheckedTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        calculateWindow = new java.awt.Button();
+        windowTextField = new javax.swing.JTextField();
+        clockPanel = new javax.swing.JPanel();
+        ButtonPanel = new javax.swing.JPanel();
         greatlyWorn = new java.awt.Button();
         fairlyWorn = new java.awt.Button();
         idocMaxWindow = new java.awt.Button();
-        jPanel3 = new javax.swing.JPanel();
+        TimerPanel = new javax.swing.JPanel();
         desc_currEstClock = new javax.swing.JLabel();
         curr_Time = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -118,7 +124,7 @@ public class MenuPane extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(desc_currEstClock1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(curr_Time1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addComponent(curr_Time1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
@@ -128,20 +134,83 @@ public class MenuPane extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(desc_currEstClock1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(curr_Time1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         ///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto
         timer = new javax.swing.Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Calendar now = Calendar.getInstance();
+                Calendar now = getCalendar();
                 int h = now.get(Calendar.HOUR_OF_DAY);
                 int m = now.get(Calendar.MINUTE);
+
                 int s = now.get(Calendar.SECOND);
                 curr_Time1.setText("" + h + ":" + m + ":" + s);
             }
         });
         timer.start();
+
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        lastCheckedTextField.setText("hh:mm (24h)");
+        lastCheckedTextField.setToolTipText("");
+        lastCheckedTextField.setUI(new HintTextFieldUI("hh:mm (24h)", true));
+        lastCheckedTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastCheckedTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Last time checked:");
+
+        jLabel2.setText("Window generated:");
+
+        calculateWindow.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        calculateWindow.setLabel("Calculate Window");
+        calculateWindow.setName(""); // NOI18N
+        calculateWindow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateWindowActionPerformed(evt);
+            }
+        });
+
+        windowTextField.setToolTipText("");
+        windowTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                windowTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(calculateWindow, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lastCheckedTextField))
+                .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(windowTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(162, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lastCheckedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(windowTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(calculateWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout timingPanelLayout = new javax.swing.GroupLayout(timingPanel);
         timingPanel.setLayout(timingPanelLayout);
@@ -149,15 +218,19 @@ public class MenuPane extends javax.swing.JFrame {
             timingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(timingPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGroup(timingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         timingPanelLayout.setVerticalGroup(
             timingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(timingPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Checking", timingPanel);
@@ -190,11 +263,11 @@ public class MenuPane extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout ButtonPanelLayout = new javax.swing.GroupLayout(ButtonPanel);
+        ButtonPanel.setLayout(ButtonPanelLayout);
+        ButtonPanelLayout.setHorizontalGroup(
+            ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(fairlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -203,11 +276,11 @@ public class MenuPane extends javax.swing.JFrame {
                 .addComponent(idocMaxWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        ButtonPanelLayout.setVerticalGroup(
+            ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ButtonPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ButtonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(greatlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idocMaxWindow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fairlyWorn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -222,22 +295,22 @@ public class MenuPane extends javax.swing.JFrame {
 
         curr_Time.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout TimerPanelLayout = new javax.swing.GroupLayout(TimerPanel);
+        TimerPanel.setLayout(TimerPanelLayout);
+        TimerPanelLayout.setHorizontalGroup(
+            TimerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TimerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(desc_currEstClock)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(curr_Time, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addComponent(curr_Time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        TimerPanelLayout.setVerticalGroup(
+            TimerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TimerPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(TimerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(desc_currEstClock, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(curr_Time, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(91, Short.MAX_VALUE))
@@ -246,9 +319,10 @@ public class MenuPane extends javax.swing.JFrame {
         ///////REFACTOR NEEDED - serve un metodo per sost il timer new sotto
         timer = new javax.swing.Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Calendar now = Calendar.getInstance();
+                Calendar now = getCalendar();
                 int h = now.get(Calendar.HOUR_OF_DAY);
                 int m = now.get(Calendar.MINUTE);
+
                 int s = now.get(Calendar.SECOND);
                 curr_Time.setText("" + h + ":" + m + ":" + s);
             }
@@ -262,17 +336,19 @@ public class MenuPane extends javax.swing.JFrame {
             .addGroup(clockPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                    .addGroup(clockPanelLayout.createSequentialGroup()
+                        .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 288, Short.MAX_VALUE))
+                    .addComponent(TimerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         clockPanelLayout.setVerticalGroup(
             clockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(clockPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TimerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -340,7 +416,7 @@ public class MenuPane extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,6 +608,19 @@ public void alt_tab() throws AWTException {
          System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void lastCheckedTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastCheckedTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastCheckedTextFieldActionPerformed
+
+    private void windowTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_windowTextFieldActionPerformed
+
+    private void calculateWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateWindowActionPerformed
+        // TODO add your handling code here:
+        String lastcheck = lastCheckedTextField.getText();
+    }//GEN-LAST:event_calculateWindowActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -570,7 +659,10 @@ public void alt_tab() throws AWTException {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ButtonPanel;
     private java.awt.Button SaveButton;
+    private javax.swing.JPanel TimerPanel;
+    private java.awt.Button calculateWindow;
     private javax.swing.JPanel clockPanel;
     private javax.swing.JLabel curr_Time;
     private javax.swing.JLabel curr_Time1;
@@ -580,20 +672,23 @@ public void alt_tab() throws AWTException {
     private java.awt.Button greatlyWorn;
     private java.awt.Button idocMaxWindow;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel lab_username;
+    private javax.swing.JTextField lastCheckedTextField;
     private javax.swing.JPanel timingPanel;
     private javax.swing.JTextField username;
+    private javax.swing.JTextField windowTextField;
     // End of variables declaration//GEN-END:variables
 
 
