@@ -17,12 +17,16 @@ public class WindowMaker {
         this.tz1 = TimeZone.getTimeZone("US/Eastern");
         this.calendar = Calendar.getInstance(tz1);
     }
+    public WindowMaker(Calendar c){
+         this.tz1 = TimeZone.getTimeZone("US/Eastern");
+        calendar = c;
+    }
     
     public String idocWindow(){
         //int h = calendar.get(Calendar.HOUR_OF_DAY) + 6;
         
         //return "" +h + getMinutes();
-        return forwardSixHours()+getMinutes()+getFascia()+
+        return forwardSixHours()+
                 " "+getDay()+"-"+ getMonth();
     }
 
@@ -38,10 +42,17 @@ public class WindowMaker {
 
     private String forwardSixHours(){
         calendar.add(Calendar.HOUR, 6);
-        String s = ""+  calendar.get(Calendar.HOUR);
+        String s = ""+  getHour()+getMinutes()+getFascia();
                 calendar.add(Calendar.HOUR, -6);
         return s;
         
+    }
+
+    private int getHour() {
+        if (calendar.get(Calendar.HOUR) == 0)
+            return 12;
+    return calendar.get(Calendar.HOUR);
+
     }
     
     
@@ -69,7 +80,7 @@ public class WindowMaker {
     }
    
       private String currTime(){         
-        int h = calendar.get(Calendar.HOUR);  //hour 12h - HOUR_OF_DAY 24h
+        int h = getHour();  //hour 12h - HOUR_OF_DAY 24h
        
           String fascia = getFascia();
 
