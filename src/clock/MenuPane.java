@@ -86,11 +86,15 @@ public class MenuPane extends javax.swing.JFrame {
         desc_currEstClock = new javax.swing.JLabel();
         curr_Time = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
+        settingsTab = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lab_username = new javax.swing.JLabel();
         SaveButton = new java.awt.Button();
         username = new javax.swing.JTextField();
+        about = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        textArea1 = new java.awt.TextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
@@ -196,19 +200,22 @@ public class MenuPane extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(timeWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(timeWindowPanelLayout.createSequentialGroup()
+                        .addComponent(calculateWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idocCheckbox)
+                        .addGap(178, 178, 178))
+                    .addGroup(timeWindowPanelLayout.createSequentialGroup()
                         .addGroup(timeWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lastcheckedHour))
                         .addGap(118, 118, 118)
                         .addGroup(timeWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(windowTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(110, Short.MAX_VALUE))
-                    .addGroup(timeWindowPanelLayout.createSequentialGroup()
-                        .addComponent(calculateWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idocCheckbox)
-                        .addGap(178, 178, 178))))
+                            .addComponent(windowTextField)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, timeWindowPanelLayout.createSequentialGroup()
+                                .addGap(0, 64, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(51, 51, 51)))
+                        .addContainerGap())))
         );
         timeWindowPanelLayout.setVerticalGroup(
             timeWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,24 +451,73 @@ public class MenuPane extends javax.swing.JFrame {
         **/
         username.setText(getUsername());
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout settingsTabLayout = new javax.swing.GroupLayout(settingsTab);
+        settingsTab.setLayout(settingsTabLayout);
+        settingsTabLayout.setHorizontalGroup(
+            settingsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingsTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(292, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        settingsTabLayout.setVerticalGroup(
+            settingsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settingsTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(153, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("Settings", jPanel5);
+        jTabbedPane3.addTab("Settings", settingsTab);
+
+        jLabel4.setText("Author: Ray-Fox");
+
+        textArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textArea1.setEditable(false);
+        textArea1.setName(""); // NOI18N
+        textArea1.setText(aboutText());
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout aboutLayout = new javax.swing.GroupLayout(about);
+        about.setLayout(aboutLayout);
+        aboutLayout.setHorizontalGroup(
+            aboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        aboutLayout.setVerticalGroup(
+            aboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane3.addTab("About", about);
 
         jMenu1.setText("Settings");
 
@@ -554,6 +610,21 @@ public class MenuPane extends javax.swing.JFrame {
       return  "gw" + currDay() + currTime() +"."+ user;
     }
     
+    private String aboutText(){
+        String s = "DISCLAIMER:\n\n"
+                + "This tool has been designed\n "
+                + "as an assistant in Book Checking operations.\n\n"
+                + "Please report any bug or question to Ray-Fox\n"
+                + "#2750\n\n"
+                + "THIS SOFTWARE IS PROVIDED \"AS IS\" AND ANY EXPRESSED OR IMPLIED WARRANTIES,\n INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS\n"
+                + " FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR\n CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,\n"
+                + " OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)\n"
+                + "HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,\n STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE \n"
+                + "USE OF THIS SOFTWARE,"
+                + " EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.";
+        return s;
+    }
+    
     public static void writeKeyboard(String keys) throws AWTException {
         Robot robot = new Robot();
         robot.delay(100);        
@@ -590,7 +661,7 @@ public void alt_tab() throws AWTException {
         // TODO add your handling code here:
         try {
             alt_tab();
-            String idoc = wm.idocWindow() + " max";
+            String idoc = wm.idocWindow() + " max" + wm.printDate();
             writeKeyboard(idoc);
         } catch (AWTException ex) {
             Logger.getLogger(MenuPane.class.getName()).log(Level.SEVERE, null, ex);
@@ -686,15 +757,19 @@ public void alt_tab() throws AWTException {
        Calendar cal = convertTextToTime();
         WindowMaker window = new WindowMaker(cal);
         
-        
+        String current =wm.forwardSixHours() ;
+
         
         if (idocCheckbox.isSelected()) {
-           windowTextField.setText( window.idocWindow());
+           windowTextField.setText( window.idocWindow() + "-" +current +" "+ wm.printDate());
         }
         else
-            windowTextField.setText(window.greatlyWindow());
+            windowTextField.setText(window.greatlyWindow()+ "-" + current);
     }//GEN-LAST:event_calculateWindowActionPerformed
 
+    
+   
+    
     private void lastcheckedHourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastcheckedHourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lastcheckedHourActionPerformed
@@ -740,6 +815,7 @@ public void alt_tab() throws AWTException {
     private javax.swing.JPanel ButtonPanel;
     private java.awt.Button SaveButton;
     private javax.swing.JPanel TimerPanel;
+    private javax.swing.JPanel about;
     private java.awt.Button calculateWindow;
     private javax.swing.JPanel clockPanel;
     private javax.swing.JLabel curr_Time;
@@ -755,22 +831,26 @@ public void alt_tab() throws AWTException {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel lab_username;
     private javax.swing.JTextField lastcheckedHour;
+    private javax.swing.JPanel settingsTab;
+    private java.awt.TextArea textArea1;
     private javax.swing.JPanel timeWindowPanel;
     private javax.swing.JPanel timingPanel;
     private javax.swing.JTextField username;
     private javax.swing.JTextField windowTextField;
     // End of variables declaration//GEN-END:variables
+
 
 
 
