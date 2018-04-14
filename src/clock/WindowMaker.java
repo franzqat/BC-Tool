@@ -26,8 +26,11 @@ public class WindowMaker {
         //int h = calendar.get(Calendar.HOUR_OF_DAY) + 6;
         
         //return "" +h + getMinutes();
-        return forwardSixHours()+
-                " "+getDay()+"-"+ getMonth();
+
+        return forwardSixHours();
+    }
+    public String printDate(){
+        return  " "+getDay()+"-"+ getMonth();
     }
 
     private int getMonth() {
@@ -40,7 +43,7 @@ public class WindowMaker {
                 + getMonth() +"-"+ forwardDays(6);
     }
 
-    private String forwardSixHours(){
+    public String forwardSixHours(){
         calendar.add(Calendar.HOUR, 6);
         String s = ""+  getHour()+getMinutes()+getFascia();
                 calendar.add(Calendar.HOUR, -6);
