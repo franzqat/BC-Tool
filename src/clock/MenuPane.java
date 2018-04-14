@@ -255,7 +255,7 @@ public class MenuPane extends javax.swing.JFrame {
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
-        jTabbedPane3.addTab("Checking", timingPanel);
+        jTabbedPane3.addTab("Window", timingPanel);
 
         ButtonPanel.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -526,7 +526,7 @@ public class MenuPane extends javax.swing.JFrame {
 
         jMenu1.setText("Settings");
 
-        jCheckBoxMenuItem1.setText("Disable Macro Hotkey");
+        jCheckBoxMenuItem1.setText("Disable Macro Hotkey (in dev)");
         jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxMenuItem1ActionPerformed(evt);
