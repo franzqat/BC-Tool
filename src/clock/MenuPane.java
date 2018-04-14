@@ -331,6 +331,11 @@ public class MenuPane extends javax.swing.JFrame {
         curr_Time.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
 
         jButton1.setText("Current Time");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout TimerPanelLayout = new javax.swing.GroupLayout(TimerPanel);
         TimerPanel.setLayout(TimerPanelLayout);
@@ -773,6 +778,19 @@ public void alt_tab() throws AWTException {
     private void lastcheckedHourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastcheckedHourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lastcheckedHourActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String s = currTime() + " " +wm.getMonth() + "-" +wm.getDay()  + "." + getUsername();
+        try {
+            alt_tab();
+            writeKeyboard(s);
+        } catch (AWTException ex) {
+           
+        }
+  
+                
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -33,7 +33,7 @@ public class WindowMaker {
         return  " "+getDay()+"-"+ getMonth();
     }
 
-    private int getMonth() {
+    public int getMonth() {
         return calendar.get(Calendar.MONTH)+1;
     }
     
