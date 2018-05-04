@@ -42,6 +42,11 @@ public class WindowMaker {
         return ""+currTime() + " "
                 + getMonth() +"-"+ forwardDays(6);
     }
+    public String greatlyWindowDays(){
+        //"ORARIO-MM-GG"
+        return  ""+getMonth() +"-"+ forwardDays(6);
+    }
+    
 
     public String forwardSixHours(){
         calendar.add(Calendar.HOUR, 6);
@@ -82,7 +87,7 @@ public class WindowMaker {
         return minuti;
     }
    
-      private String currTime(){         
+      public String currTime(){         
         int h = getHour();  //hour 12h - HOUR_OF_DAY 24h
        
           String fascia = getFascia();

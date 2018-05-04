@@ -14,13 +14,10 @@ package clock;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Properties;
 import java.util.TimeZone;
 import java.util.logging.Level;
@@ -762,14 +759,14 @@ public void alt_tab() throws AWTException {
        Calendar cal = convertTextToTime();
         WindowMaker window = new WindowMaker(cal);
         
-        String current =wm.forwardSixHours() ;
-
+        //String current =wm.forwardSixHours() ;
+        String current =wm.currTime();
         
         if (idocCheckbox.isSelected()) {
            windowTextField.setText( window.idocWindow() + "-" +current +" "+ wm.printDate());
         }
         else
-            windowTextField.setText(window.greatlyWindow()+ "-" + current);
+            windowTextField.setText(window.currTime()+ "-" +current+" "+ window.greatlyWindowDays());
     }//GEN-LAST:event_calculateWindowActionPerformed
 
     
