@@ -47,13 +47,12 @@ public class WindowMaker {
         return  ""+getMonth() +"-"+ forwardDays(6);
     }
     
-
-    public String forwardSixHours(){
+    public String forwardSixHours() {
         calendar.add(Calendar.HOUR, 6);
-        String s = ""+  getHour()+getMinutes()+getFascia();
-                calendar.add(Calendar.HOUR, -6);
+        String s = "" + getHour() + getMinutes() + getFascia();
+         calendar.add(Calendar.HOUR, -6);
         return s;
-        
+
     }
 
     private int getHour() {
