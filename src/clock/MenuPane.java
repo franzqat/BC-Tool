@@ -10,8 +10,9 @@ package clock;
  *
  * @author Francesco
  */
-
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDate;
@@ -728,17 +729,9 @@ public void alt_tab() throws AWTException {
         c.set(Calendar.HOUR_OF_DAY, time.getHour());
         c.set(Calendar.MINUTE, time.getMinute());
 
-        System.out.println(time.toString());
+     //   System.out.println(time.toString());
 
         return c;
-
- /*
-            lastcheckedHour.setText("Invalid time");
-            return getCalendar();
-            
-*/
-
-
     }
 
 
@@ -759,16 +752,17 @@ public void alt_tab() throws AWTException {
        Calendar cal = convertTextToTime();
         WindowMaker window = new WindowMaker(cal);
         
-        //String current =wm.forwardSixHours() ;
-        String current =wm.currTime();
+        String current= wm.forwardSixHours() ;
+        
         
         if (idocCheckbox.isSelected()) {
            windowTextField.setText( window.idocWindow() + "-" +current +" "+ wm.printDate());
         }
-        else
+        else {
+            current =wm.currTime();
             windowTextField.setText(window.currTime()+ "-" +current+" "+ window.greatlyWindowDays());
     }//GEN-LAST:event_calculateWindowActionPerformed
-
+    }
     
    
     
